@@ -2,16 +2,16 @@ package com.tatesuke.lifegame.cell;
 
 public class CellBuilder {
 
-	public Cell[][] buildCellGrid(int rowSize, int columnSize) {
+	public CellImpl[][] buildCellGrid(int rowSize, int columnSize) {
 		if ((rowSize <= 0) || (columnSize <= 0)) {
 			throw new IllegalArgumentException();
 		}
 		
-		Cell[][] grid = new Cell[rowSize][columnSize];
+		CellImpl[][] grid = new CellImpl[rowSize][columnSize];
 		
 		for (int row = 0; row < rowSize; row++) {
 			for (int column = 0; column < columnSize; column++) {
-				grid[row][column] = new Cell();
+				grid[row][column] = new CellImpl();
 				if (0 < row) {
 					grid[row][column].setNeighbor(Cell.UPPER, grid[row - 1][column]);
 				}

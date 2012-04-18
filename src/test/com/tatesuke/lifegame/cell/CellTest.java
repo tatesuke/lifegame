@@ -13,7 +13,7 @@ public class CellTest {
 	 */
 	@Test
 	public void 初期状態のテスト() {
-		Cell cell = new Cell();
+		CellImpl cell = new CellImpl();
 		assertThat(cell.getState(), is(State.DEAD));
 	}
 	
@@ -22,7 +22,7 @@ public class CellTest {
 	 */
 	@Test
 	public void setAliveのテスト() {
-		Cell cell = new Cell();
+		CellImpl cell = new CellImpl();
 		
 		cell.setState(State.ALIVE);
 		assertThat(cell.getState(), is(State.ALIVE));
@@ -37,60 +37,60 @@ public class CellTest {
 	@Test
 	public void setNeighborのテスト() {
 		// 上
-		Cell cell1 = new Cell();
-		Cell cell2 = new Cell();		
+		CellImpl cell1 = new CellImpl();
+		CellImpl cell2 = new CellImpl();		
 		cell1.setNeighbor(Cell.UPPER, cell2);
-		assertThat(cell1.getNeighbor(Cell.UPPER), is(sameInstance(cell2)));
-		assertThat(cell2.getNeighbor(Cell.BOTTOM), is(sameInstance(cell1)));
+		assertThat(cell1.getNeighbor(Cell.UPPER), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(Cell.BOTTOM), is(sameInstance((Cell)cell1)));
 		
 		// 右上
-		cell1 = new Cell();
-		cell2 = new Cell();		
+		cell1 = new CellImpl();
+		cell2 = new CellImpl();		
 		cell1.setNeighbor(Cell.UPPER_RIGHT, cell2);
-		assertThat(cell1.getNeighbor(Cell.UPPER_RIGHT), is(sameInstance(cell2)));
-		assertThat(cell2.getNeighbor(Cell.BOTTOM_LEFT), is(sameInstance(cell1)));
+		assertThat(cell1.getNeighbor(Cell.UPPER_RIGHT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(Cell.BOTTOM_LEFT), is(sameInstance((Cell)cell1)));
 		
 		// 右
-		cell1 = new Cell();
-		cell2 = new Cell();		
+		cell1 = new CellImpl();
+		cell2 = new CellImpl();		
 		cell1.setNeighbor(Cell.RIGHT, cell2);
-		assertThat(cell1.getNeighbor(Cell.RIGHT), is(sameInstance(cell2)));
-		assertThat(cell2.getNeighbor(Cell.LEFT), is(sameInstance(cell1)));
+		assertThat(cell1.getNeighbor(Cell.RIGHT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(Cell.LEFT), is(sameInstance((Cell)cell1)));
 		
 		// 右下
-		cell1 = new Cell();
-		cell2 = new Cell();		
+		cell1 = new CellImpl();
+		cell2 = new CellImpl();		
 		cell1.setNeighbor(Cell.BOTTOM_RIGHT, cell2);
-		assertThat(cell1.getNeighbor(Cell.BOTTOM_RIGHT), is(sameInstance(cell2)));
-		assertThat(cell2.getNeighbor(Cell.UPPER_LEFT), is(sameInstance(cell1)));
+		assertThat(cell1.getNeighbor(Cell.BOTTOM_RIGHT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(Cell.UPPER_LEFT), is(sameInstance((Cell)cell1)));
 		
 		// 下
-		cell1 = new Cell();
-		cell2 = new Cell();		
+		cell1 = new CellImpl();
+		cell2 = new CellImpl();		
 		cell1.setNeighbor(Cell.BOTTOM, cell2);
-		assertThat(cell1.getNeighbor(Cell.BOTTOM), is(sameInstance(cell2)));
-		assertThat(cell2.getNeighbor(Cell.UPPER), is(sameInstance(cell1)));
+		assertThat(cell1.getNeighbor(Cell.BOTTOM), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(Cell.UPPER), is(sameInstance((Cell)cell1)));
 		
 		// 左下
-		cell1 = new Cell();
-		cell2 = new Cell();		
+		cell1 = new CellImpl();
+		cell2 = new CellImpl();		
 		cell1.setNeighbor(Cell.BOTTOM_LEFT, cell2);
-		assertThat(cell1.getNeighbor(Cell.BOTTOM_LEFT), is(sameInstance(cell2)));
-		assertThat(cell2.getNeighbor(Cell.UPPER_RIGHT), is(sameInstance(cell1)));
+		assertThat(cell1.getNeighbor(Cell.BOTTOM_LEFT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(Cell.UPPER_RIGHT), is(sameInstance((Cell)cell1)));
 		
 		// 左
-		cell1 = new Cell();
-		cell2 = new Cell();		
+		cell1 = new CellImpl();
+		cell2 = new CellImpl();		
 		cell1.setNeighbor(Cell.LEFT, cell2);
-		assertThat(cell1.getNeighbor(Cell.LEFT), is(sameInstance(cell2)));
-		assertThat(cell2.getNeighbor(Cell.RIGHT), is(sameInstance(cell1)));
+		assertThat(cell1.getNeighbor(Cell.LEFT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(Cell.RIGHT), is(sameInstance((Cell)cell1)));
 		
 		// 左上
-		cell1 = new Cell();
-		cell2 = new Cell();		
+		cell1 = new CellImpl();
+		cell2 = new CellImpl();		
 		cell1.setNeighbor(Cell.UPPER_LEFT, cell2);
-		assertThat(cell1.getNeighbor(Cell.UPPER_LEFT), is(sameInstance(cell2)));
-		assertThat(cell2.getNeighbor(Cell.BOTTOM_RIGHT), is(sameInstance(cell1)));
+		assertThat(cell1.getNeighbor(Cell.UPPER_LEFT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(Cell.BOTTOM_RIGHT), is(sameInstance((Cell)cell1)));
 	}
 	
 	/**
@@ -98,10 +98,10 @@ public class CellTest {
 	 */
 	@Test
 	public void 誕生() {
-		Cell cell00 = new Cell();
-		Cell cell01 = new Cell();
-		Cell cell02 = new Cell();
-		Cell cell11 = new Cell();
+		CellImpl cell00 = new CellImpl();
+		CellImpl cell01 = new CellImpl();
+		CellImpl cell02 = new CellImpl();
+		CellImpl cell11 = new CellImpl();
 		
 		cell00.setState(State.ALIVE);
 		cell01.setState(State.ALIVE);
@@ -121,9 +121,9 @@ public class CellTest {
 	 */
 	@Test
 	public void 生存のテスト_隣接2つ() {
-		Cell cell00 = new Cell();
-		Cell cell01 = new Cell();
-		Cell cell11 = new Cell();
+		CellImpl cell00 = new CellImpl();
+		CellImpl cell01 = new CellImpl();
+		CellImpl cell11 = new CellImpl();
 		
 		cell00.setState(State.ALIVE);
 		cell01.setState(State.ALIVE);
@@ -141,10 +141,10 @@ public class CellTest {
 	 */
 	@Test
 	public void 生存のテスト_隣接3つ() {
-		Cell cell00 = new Cell();
-		Cell cell01 = new Cell();
-		Cell cell02 = new Cell();
-		Cell cell11 = new Cell();
+		CellImpl cell00 = new CellImpl();
+		CellImpl cell01 = new CellImpl();
+		CellImpl cell02 = new CellImpl();
+		CellImpl cell11 = new CellImpl();
 		
 		cell00.setState(State.ALIVE);
 		cell01.setState(State.ALIVE);
@@ -164,8 +164,8 @@ public class CellTest {
 	 */
 	@Test
 	public void 過疎のテスト() {
-		Cell cell00 = new Cell();
-		Cell cell11 = new Cell();
+		CellImpl cell00 = new CellImpl();
+		CellImpl cell11 = new CellImpl();
 		
 		cell00.setState(State.ALIVE);
 		cell11.setState(State.ALIVE);
@@ -181,11 +181,11 @@ public class CellTest {
 	 */
 	@Test
 	public void 過密のテスト() {
-		Cell cell00 = new Cell();
-		Cell cell01 = new Cell();
-		Cell cell02 = new Cell();
-		Cell cell10 = new Cell();
-		Cell cell11 = new Cell();
+		CellImpl cell00 = new CellImpl();
+		CellImpl cell01 = new CellImpl();
+		CellImpl cell02 = new CellImpl();
+		CellImpl cell10 = new CellImpl();
+		CellImpl cell11 = new CellImpl();
 		
 		cell00.setState(State.ALIVE);
 		cell01.setState(State.ALIVE);
@@ -207,7 +207,7 @@ public class CellTest {
 	 */
 	@Test
 	public void updateStateのテスト() {
-		Cell cell = new Cell();
+		CellImpl cell = new CellImpl();
 		
 		assertThat(cell.getState(), is(not(State.ALIVE)));
 		cell.setNextState(State.ALIVE);
