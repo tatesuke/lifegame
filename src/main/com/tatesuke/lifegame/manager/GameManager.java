@@ -1,8 +1,5 @@
 package com.tatesuke.lifegame.manager;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import com.tatesuke.lifegame.cell.Cell;
 import com.tatesuke.lifegame.cell.Cell.State;
 import com.tatesuke.lifegame.cell.CellBuilder;
@@ -10,15 +7,16 @@ import com.tatesuke.lifegame.cell.CellImpl;
 
 public class GameManager {
 
-	private static final long INTERVAL = 1000L;
-	
-	private CellImpl[][] cell;
-	private Timer gameTimer;
+	private long interval = 1000L;
 	private GameObserver observer;
+	private int rowSize;
+	private int columnSize;
+	private CellImpl[][] cell;
 	private int generationNumber;
+	private boolean isRunning;
 	
 	public GameManager() {
-		cell = new CellBuilder().buildCellGrid(10, 10);
+		reset(10, 10);
 	}
 
 	public void setObserver(GameObserver observer) {
@@ -26,41 +24,57 @@ public class GameManager {
 	}
 	
 	public void start() {
-		gameTimer = new Timer();
-		gameTimer.schedule(getTimerTask(), 0L, INTERVAL);
+		if (!isRunning()) {
+			isRunning = true;
+			new Thread(getGameThread()).start();
+		}
 	}
 
 	public void stop() {
-		gameTimer.cancel();
+		isRunning = false;
+	}
+	
+	public boolean isRunning() {
+		return isRunning;
 	}
 	
 	public int getGenerationNumber() {
 		return generationNumber;
 	}
 	
-	private TimerTask getTimerTask() {
-		TimerTask task = new TimerTask() {
+	private Runnable getGameThread() {
+		return new Runnable() {
 			@Override
 			public void run() {
-				for (int row = 0; row < cell.length; row++) {
-					for (int column = 0; column < cell[row].length; column++) {
-						cell[row][column].evalNextState();
+				while (isRunning) {
+					for (int row = 0; row < cell.length; row++) {
+						for (int column = 0; column < cell[row].length; column++) {
+							cell[row][column].evalNextState();
+						}
 					}
-				}
-				for (int row = 0; row < cell.length; row++) {
-					for (int column = 0; column < cell[row].length; column++) {
-						cell[row][column].updateState();
+					for (int row = 0; row < cell.length; row++) {
+						for (int column = 0; column < cell[row].length; column++) {
+							cell[row][column].updateState();
+						}
 					}
-				}
-				generationNumber++;
-				if (observer != null) {
-					observer.onGenerationChanged();
+					generationNumber++;
+					notifyObserver();
+					try {
+						Thread.sleep(interval);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		};
-		return task;
 	}
 
+	public void notifyObserver() {
+		if (observer != null) {
+			observer.onGenerationChanged();
+		}
+	}
+	
 	public void toggleCell(int row, int column) {
 		State state = cell[row][column].getState();
 		switch (state) {
@@ -80,6 +94,38 @@ public class GameManager {
 
 	public Cell[][] getCell() {
 		return cell;
+	}
+
+	public int getRowSize() {
+		return rowSize;
+	}
+	
+	public int getColumnSize() {
+		return columnSize;
+	}
+	
+	public void reset(int rowSize, int columnSize) {
+		if ((rowSize <= 0) || (columnSize <= 0)) {
+			throw new IllegalArgumentException();
+		}
+		
+		stop();
+		generationNumber = 0;
+		this.rowSize = rowSize;
+		this.columnSize = columnSize;
+		cell = new CellBuilder().buildCellGrid(rowSize, columnSize);
+		notifyObserver();
+	}
+
+	public long getInterval() {
+		return interval;
+	}
+
+	public void setInterval(long interval) {
+		if (interval <= 0L) {
+			throw new IllegalArgumentException();
+		}
+		this.interval = interval;
 	}
 	
 }

@@ -22,15 +22,15 @@ public class CellBuilderTest {
 	@Test
 	public void 連結のテスト() {
 		/* 3 * 3のCellを準備して、真ん中のセルが近傍のセルと正しくつながっているかをテスト */
-		Cell[][] cell = new CellBuilder().buildCellGrid(3, 3);
-		assertThat(cell[1][1].getNeighbor(Cell.UPPER), is(sameInstance(cell[0][1])));
-		assertThat(cell[1][1].getNeighbor(Cell.UPPER_RIGHT), is(sameInstance(cell[0][2])));
-		assertThat(cell[1][1].getNeighbor(Cell.RIGHT), is(sameInstance(cell[1][2])));
-		assertThat(cell[1][1].getNeighbor(Cell.BOTTOM_RIGHT), is(sameInstance(cell[2][2])));
-		assertThat(cell[1][1].getNeighbor(Cell.BOTTOM), is(sameInstance(cell[2][1])));
-		assertThat(cell[1][1].getNeighbor(Cell.BOTTOM_LEFT), is(sameInstance(cell[2][0])));
-		assertThat(cell[1][1].getNeighbor(Cell.LEFT), is(sameInstance(cell[1][0])));
-		assertThat(cell[1][1].getNeighbor(Cell.UPPER_LEFT), is(sameInstance(cell[0][0])));
+		CellImpl[][] cell = new CellBuilder().buildCellGrid(3, 3);
+		assertThat(cell[1][1].getNeighbor(CellImpl.UPPER), is(sameInstance(cell[0][1])));
+		assertThat(cell[1][1].getNeighbor(CellImpl.UPPER_RIGHT), is(sameInstance(cell[0][2])));
+		assertThat(cell[1][1].getNeighbor(CellImpl.RIGHT), is(sameInstance(cell[1][2])));
+		assertThat(cell[1][1].getNeighbor(CellImpl.BOTTOM_RIGHT), is(sameInstance(cell[2][2])));
+		assertThat(cell[1][1].getNeighbor(CellImpl.BOTTOM), is(sameInstance(cell[2][1])));
+		assertThat(cell[1][1].getNeighbor(CellImpl.BOTTOM_LEFT), is(sameInstance(cell[2][0])));
+		assertThat(cell[1][1].getNeighbor(CellImpl.LEFT), is(sameInstance(cell[1][0])));
+		assertThat(cell[1][1].getNeighbor(CellImpl.UPPER_LEFT), is(sameInstance(cell[0][0])));
 	}
 	
 }

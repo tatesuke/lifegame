@@ -16,22 +16,24 @@ public class CellPanel extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
 	
-	private Cell[][] cell;
 	private final GameManager manager;
+	private Cell[][] cell;
 	
 	public CellPanel(GameManager manager) {
+		if (manager == null) {
+			throw new IllegalArgumentException();
+		}
+		
 		this.manager = manager;
 		
 		setPreferredSize(new Dimension(400, 400));
 		addMouseListener(this);
 	}
 
-	public void setCell(Cell[][] cell) {
-		this.cell = cell;
-	}
-	
 	@Override
 	public void paintComponent(Graphics g) {
+		cell = manager.getCell();
+
 		double cellSize = Math.min(getHeight() / cell.length, getWidth() / cell[0].length);
 		double offsetX = (getWidth() - (cellSize * cell[0].length)) / 2.0;
 		double offsetY = (getHeight() - (cellSize * cell.length)) / 2.0;
@@ -56,22 +58,26 @@ public class CellPanel extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		if (cell == null) {
+			return;
+		}
+		
 		double cellSize = Math.min(getHeight() / cell.length, getWidth() / cell[0].length);
 		double offsetX = (getWidth() - (cellSize * cell[0].length)) / 2.0;
 		double offsetY = (getHeight() - (cellSize * cell.length)) / 2.0;
 		
 		double x = e.getX() - offsetX;
 		double y = e.getY() - offsetY;
-		
 		if ((x < 0) || (y < 0) || ((cellSize * cell[0].length) < x) || ((cellSize * cell.length) < y)) {
 			return;
 		}
-		
 		int row = (int)((y + 1) / cellSize);
 		int column = (int)((x + 1) / cellSize);
-		if (manager != null) {
-			manager.toggleCell(row, column);
-		}
+		manager.toggleCell(row, column);
+	}
+	
+	public void update() {
+		repaint();
 	}
 	
 	@Override

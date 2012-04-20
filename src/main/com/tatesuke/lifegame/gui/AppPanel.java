@@ -1,5 +1,7 @@
 package com.tatesuke.lifegame.gui;
 
+import java.awt.BorderLayout;
+
 import javax.swing.JPanel;
 
 import com.tatesuke.lifegame.manager.GameManager;
@@ -10,17 +12,24 @@ public class AppPanel extends JPanel implements GameObserver {
 	private static final long serialVersionUID = 1L;
 
 	private CellPanel cellPanel;
+	private ControlPanel controlPanel;
 	
-	public AppPanel(GameManager manager) {
+	public AppPanel() {
+		GameManager manager = new GameManager();
+		manager.setObserver(this);
+		
+		setLayout(new BorderLayout());
 		cellPanel = new CellPanel(manager);
-		cellPanel.setCell(manager.getCell());
-		add(cellPanel);
+		add(cellPanel, BorderLayout.CENTER);
+		
+		controlPanel = new ControlPanel(manager);
+		add(controlPanel, BorderLayout.SOUTH);
 	}
 
 	@Override
 	public void onGenerationChanged() {
-		System.out.println("hoge");
-		cellPanel.repaint();
+		cellPanel.update();
+		controlPanel.update();
 	}
 	
 }

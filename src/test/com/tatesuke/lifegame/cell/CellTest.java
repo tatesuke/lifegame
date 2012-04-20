@@ -39,58 +39,57 @@ public class CellTest {
 		// è„
 		CellImpl cell1 = new CellImpl();
 		CellImpl cell2 = new CellImpl();		
-		cell1.setNeighbor(Cell.UPPER, cell2);
-		assertThat(cell1.getNeighbor(Cell.UPPER), is(sameInstance((Cell)cell2)));
-		assertThat(cell2.getNeighbor(Cell.BOTTOM), is(sameInstance((Cell)cell1)));
+		cell1.setNeighbor(CellImpl.UPPER, cell2);
+		assertThat(cell1.getNeighbor(CellImpl.UPPER), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(CellImpl.BOTTOM), is(sameInstance((Cell)cell1)));
 		
-		// âEè„
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
-		cell1.setNeighbor(Cell.UPPER_RIGHT, cell2);
-		assertThat(cell1.getNeighbor(Cell.UPPER_RIGHT), is(sameInstance((Cell)cell2)));
-		assertThat(cell2.getNeighbor(Cell.BOTTOM_LEFT), is(sameInstance((Cell)cell1)));
+		cell1.setNeighbor(CellImpl.UPPER_RIGHT, cell2);
+		assertThat(cell1.getNeighbor(CellImpl.UPPER_RIGHT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(CellImpl.BOTTOM_LEFT), is(sameInstance((Cell)cell1)));
 		
 		// âE
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
-		cell1.setNeighbor(Cell.RIGHT, cell2);
-		assertThat(cell1.getNeighbor(Cell.RIGHT), is(sameInstance((Cell)cell2)));
-		assertThat(cell2.getNeighbor(Cell.LEFT), is(sameInstance((Cell)cell1)));
+		cell1.setNeighbor(CellImpl.RIGHT, cell2);
+		assertThat(cell1.getNeighbor(CellImpl.RIGHT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(CellImpl.LEFT), is(sameInstance((Cell)cell1)));
 		
 		// âEâ∫
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
-		cell1.setNeighbor(Cell.BOTTOM_RIGHT, cell2);
-		assertThat(cell1.getNeighbor(Cell.BOTTOM_RIGHT), is(sameInstance((Cell)cell2)));
-		assertThat(cell2.getNeighbor(Cell.UPPER_LEFT), is(sameInstance((Cell)cell1)));
+		cell1.setNeighbor(CellImpl.BOTTOM_RIGHT, cell2);
+		assertThat(cell1.getNeighbor(CellImpl.BOTTOM_RIGHT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(CellImpl.UPPER_LEFT), is(sameInstance((Cell)cell1)));
 		
 		// â∫
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
-		cell1.setNeighbor(Cell.BOTTOM, cell2);
-		assertThat(cell1.getNeighbor(Cell.BOTTOM), is(sameInstance((Cell)cell2)));
-		assertThat(cell2.getNeighbor(Cell.UPPER), is(sameInstance((Cell)cell1)));
+		cell1.setNeighbor(CellImpl.BOTTOM, cell2);
+		assertThat(cell1.getNeighbor(CellImpl.BOTTOM), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(CellImpl.UPPER), is(sameInstance((Cell)cell1)));
 		
 		// ç∂â∫
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
-		cell1.setNeighbor(Cell.BOTTOM_LEFT, cell2);
-		assertThat(cell1.getNeighbor(Cell.BOTTOM_LEFT), is(sameInstance((Cell)cell2)));
-		assertThat(cell2.getNeighbor(Cell.UPPER_RIGHT), is(sameInstance((Cell)cell1)));
+		cell1.setNeighbor(CellImpl.BOTTOM_LEFT, cell2);
+		assertThat(cell1.getNeighbor(CellImpl.BOTTOM_LEFT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(CellImpl.UPPER_RIGHT), is(sameInstance((Cell)cell1)));
 		
 		// ç∂
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
-		cell1.setNeighbor(Cell.LEFT, cell2);
-		assertThat(cell1.getNeighbor(Cell.LEFT), is(sameInstance((Cell)cell2)));
-		assertThat(cell2.getNeighbor(Cell.RIGHT), is(sameInstance((Cell)cell1)));
+		cell1.setNeighbor(CellImpl.LEFT, cell2);
+		assertThat(cell1.getNeighbor(CellImpl.LEFT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(CellImpl.RIGHT), is(sameInstance((Cell)cell1)));
 		
 		// ç∂è„
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
-		cell1.setNeighbor(Cell.UPPER_LEFT, cell2);
-		assertThat(cell1.getNeighbor(Cell.UPPER_LEFT), is(sameInstance((Cell)cell2)));
-		assertThat(cell2.getNeighbor(Cell.BOTTOM_RIGHT), is(sameInstance((Cell)cell1)));
+		cell1.setNeighbor(CellImpl.UPPER_LEFT, cell2);
+		assertThat(cell1.getNeighbor(CellImpl.UPPER_LEFT), is(sameInstance((Cell)cell2)));
+		assertThat(cell2.getNeighbor(CellImpl.BOTTOM_RIGHT), is(sameInstance((Cell)cell1)));
 	}
 	
 	/**
@@ -108,9 +107,9 @@ public class CellTest {
 		cell02.setState(State.ALIVE);
 		cell11.setState(State.DEAD);
 		
-		cell11.setNeighbor(Cell.UPPER_LEFT, cell00);
-		cell11.setNeighbor(Cell.UPPER, cell01);
-		cell11.setNeighbor(Cell.UPPER_RIGHT, cell02);
+		cell11.setNeighbor(CellImpl.UPPER_LEFT, cell00);
+		cell11.setNeighbor(CellImpl.UPPER, cell01);
+		cell11.setNeighbor(CellImpl.UPPER_RIGHT, cell02);
 		
 		cell11.evalNextState();
 		assertThat(cell11.getNextState(), is(State.ALIVE));
@@ -129,8 +128,8 @@ public class CellTest {
 		cell01.setState(State.ALIVE);
 		cell11.setState(State.ALIVE);
 		
-		cell11.setNeighbor(Cell.UPPER_LEFT, cell00);
-		cell11.setNeighbor(Cell.UPPER, cell01);
+		cell11.setNeighbor(CellImpl.UPPER_LEFT, cell00);
+		cell11.setNeighbor(CellImpl.UPPER, cell01);
 		
 		cell11.evalNextState();
 		assertThat(cell11.getNextState(), is(State.ALIVE));
@@ -151,9 +150,9 @@ public class CellTest {
 		cell02.setState(State.ALIVE);
 		cell11.setState(State.ALIVE);
 		
-		cell11.setNeighbor(Cell.UPPER_LEFT, cell00);
-		cell11.setNeighbor(Cell.UPPER, cell01);
-		cell11.setNeighbor(Cell.UPPER_RIGHT, cell02);
+		cell11.setNeighbor(CellImpl.UPPER_LEFT, cell00);
+		cell11.setNeighbor(CellImpl.UPPER, cell01);
+		cell11.setNeighbor(CellImpl.UPPER_RIGHT, cell02);
 		
 		cell11.evalNextState();
 		assertThat(cell11.getNextState(), is(State.ALIVE));
@@ -170,7 +169,7 @@ public class CellTest {
 		cell00.setState(State.ALIVE);
 		cell11.setState(State.ALIVE);
 		
-		cell11.setNeighbor(Cell.UPPER_LEFT, cell00);
+		cell11.setNeighbor(CellImpl.UPPER_LEFT, cell00);
 		
 		cell11.evalNextState();
 		assertThat(cell11.getNextState(), is(State.DEAD));
@@ -193,10 +192,10 @@ public class CellTest {
 		cell10.setState(State.ALIVE);
 		cell11.setState(State.ALIVE);
 		
-		cell11.setNeighbor(Cell.UPPER_LEFT, cell00);
-		cell11.setNeighbor(Cell.UPPER, cell01);
-		cell11.setNeighbor(Cell.UPPER_RIGHT, cell02);
-		cell11.setNeighbor(Cell.LEFT, cell10);
+		cell11.setNeighbor(CellImpl.UPPER_LEFT, cell00);
+		cell11.setNeighbor(CellImpl.UPPER, cell01);
+		cell11.setNeighbor(CellImpl.UPPER_RIGHT, cell02);
+		cell11.setNeighbor(CellImpl.LEFT, cell10);
 		
 		cell11.evalNextState();
 		assertThat(cell11.getNextState(), is(State.DEAD));

@@ -2,14 +2,23 @@ package com.tatesuke.lifegame.cell;
 
 public class CellImpl implements Cell {
 	
+	public static final int UPPER = 0;
+	public static final int UPPER_RIGHT = 1;
+	public static final int RIGHT = 2;
+	public static final int BOTTOM_RIGHT = 3;
+	public static final int BOTTOM = 4;
+	public static final int BOTTOM_LEFT = 5;
+	public static final int LEFT = 6;
+	public static final int UPPER_LEFT = 7;
+	
 	private State currentState;
 	private State nextState;
-	private Cell[] neighbors;
+	private CellImpl[] neighbors;
 	
 	public CellImpl() {
 		currentState = State.DEAD;
 		nextState = null;
-		neighbors = new Cell[8];
+		neighbors = new CellImpl[8];
 	}
 	
 	@Override
@@ -75,8 +84,7 @@ public class CellImpl implements Cell {
 		this.currentState = state;
 	}
 
-	@Override
-	public Cell getNeighbor(int direction) {
+	CellImpl getNeighbor(int direction) {
 		return neighbors[direction];
 	}
 
