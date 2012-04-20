@@ -7,21 +7,21 @@ import static org.hamcrest.CoreMatchers.*;
 public class CellBuilderTest {
 
 	/**
-	 * w’è‚³‚ê‚½ƒTƒCƒY‚Ì”z—ñ‚ª•Ô‚³‚ê‚é‚±‚Æ‚ÌŠm”F
+	 * æŒ‡å®šã•ã‚ŒãŸã‚µã‚¤ã‚ºã®é…åˆ—ãŒè¿”ã•ã‚Œã‚‹ã“ã¨ã®ç¢ºèª
 	 */
 	@Test
-	public void ƒTƒCƒYw’è‚ÌƒeƒXƒg() {
+	public void ã‚µã‚¤ã‚ºæŒ‡å®šã®ãƒ†ã‚¹ãƒˆ() {
 		Cell[][] cell = new CellBuilder().buildCellGrid(2, 3);
 		assertThat(cell.length, is(2));
 		assertThat(cell[0].length, is(3));
 	}
 	
 	/**
-	 * ‚µ‚Á‚©‚è‚Æã‰º¶‰EÎ‚ß˜AŒ‹‚³‚ê‚Ä‚¢‚é‚©ƒeƒXƒg
+	 * ã—ã£ã‹ã‚Šã¨ä¸Šä¸‹å·¦å³æ–œã‚é€£çµã•ã‚Œã¦ã„ã‚‹ã‹ãƒ†ã‚¹ãƒˆ
 	 */
 	@Test
-	public void ˜AŒ‹‚ÌƒeƒXƒg() {
-		/* 3 * 3‚ÌCell‚ğ€”õ‚µ‚ÄA^‚ñ’†‚ÌƒZƒ‹‚ª‹ß–T‚ÌƒZƒ‹‚Æ³‚µ‚­‚Â‚È‚ª‚Á‚Ä‚¢‚é‚©‚ğƒeƒXƒg */
+	public void é€£çµã®ãƒ†ã‚¹ãƒˆ() {
+		/* 3 * 3ã®Cellã‚’æº–å‚™ã—ã¦ã€çœŸã‚“ä¸­ã®ã‚»ãƒ«ãŒè¿‘å‚ã®ã‚»ãƒ«ã¨æ­£ã—ãã¤ãªãŒã£ã¦ã„ã‚‹ã‹ã‚’ãƒ†ã‚¹ãƒˆ */
 		CellImpl[][] cell = new CellBuilder().buildCellGrid(3, 3);
 		assertThat(cell[1][1].getNeighbor(CellImpl.UPPER), is(sameInstance(cell[0][1])));
 		assertThat(cell[1][1].getNeighbor(CellImpl.UPPER_RIGHT), is(sameInstance(cell[0][2])));

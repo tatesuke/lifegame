@@ -9,19 +9,19 @@ import com.tatesuke.lifegame.cell.Cell.State;
 public class CellTest {
 
 	/**
-	 * ‰Šúó‘Ô‚Å‚Í€‚ñ‚Å‚¢‚éB
+	 * åˆæœŸçŠ¶æ…‹ã§ã¯æ­»ã‚“ã§ã„ã‚‹ã€‚
 	 */
 	@Test
-	public void ‰Šúó‘Ô‚ÌƒeƒXƒg() {
+	public void åˆæœŸçŠ¶æ…‹ã®ãƒ†ã‚¹ãƒˆ() {
 		CellImpl cell = new CellImpl();
 		assertThat(cell.getState(), is(State.DEAD));
 	}
 	
 	/**
-	 * setAlive‚Å¶€‚ğ‘€ì‚Å‚«‚é‚±‚ÆB
+	 * setAliveã§ç”Ÿæ­»ã‚’æ“ä½œã§ãã‚‹ã“ã¨ã€‚
 	 */
 	@Test
-	public void setAlive‚ÌƒeƒXƒg() {
+	public void setAliveã®ãƒ†ã‚¹ãƒˆ() {
 		CellImpl cell = new CellImpl();
 		
 		cell.setState(State.ALIVE);
@@ -32,11 +32,11 @@ public class CellTest {
 	}
 	
 	/**
-	 * ã‰º¶‰EÎ‚ß‚·‚×‚Ä‘ŠŒİ‚ÉŒ‹‡‚Å‚«‚é‚±‚ÆB
+	 * ä¸Šä¸‹å·¦å³æ–œã‚ã™ã¹ã¦ç›¸äº’ã«çµåˆã§ãã‚‹ã“ã¨ã€‚
 	 */
 	@Test
-	public void setNeighbor‚ÌƒeƒXƒg() {
-		// ã
+	public void setNeighborã®ãƒ†ã‚¹ãƒˆ() {
+		// ä¸Š
 		CellImpl cell1 = new CellImpl();
 		CellImpl cell2 = new CellImpl();		
 		cell1.setNeighbor(CellImpl.UPPER, cell2);
@@ -49,42 +49,42 @@ public class CellTest {
 		assertThat(cell1.getNeighbor(CellImpl.UPPER_RIGHT), is(sameInstance((Cell)cell2)));
 		assertThat(cell2.getNeighbor(CellImpl.BOTTOM_LEFT), is(sameInstance((Cell)cell1)));
 		
-		// ‰E
+		// å³
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
 		cell1.setNeighbor(CellImpl.RIGHT, cell2);
 		assertThat(cell1.getNeighbor(CellImpl.RIGHT), is(sameInstance((Cell)cell2)));
 		assertThat(cell2.getNeighbor(CellImpl.LEFT), is(sameInstance((Cell)cell1)));
 		
-		// ‰E‰º
+		// å³ä¸‹
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
 		cell1.setNeighbor(CellImpl.BOTTOM_RIGHT, cell2);
 		assertThat(cell1.getNeighbor(CellImpl.BOTTOM_RIGHT), is(sameInstance((Cell)cell2)));
 		assertThat(cell2.getNeighbor(CellImpl.UPPER_LEFT), is(sameInstance((Cell)cell1)));
 		
-		// ‰º
+		// ä¸‹
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
 		cell1.setNeighbor(CellImpl.BOTTOM, cell2);
 		assertThat(cell1.getNeighbor(CellImpl.BOTTOM), is(sameInstance((Cell)cell2)));
 		assertThat(cell2.getNeighbor(CellImpl.UPPER), is(sameInstance((Cell)cell1)));
 		
-		// ¶‰º
+		// å·¦ä¸‹
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
 		cell1.setNeighbor(CellImpl.BOTTOM_LEFT, cell2);
 		assertThat(cell1.getNeighbor(CellImpl.BOTTOM_LEFT), is(sameInstance((Cell)cell2)));
 		assertThat(cell2.getNeighbor(CellImpl.UPPER_RIGHT), is(sameInstance((Cell)cell1)));
 		
-		// ¶
+		// å·¦
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
 		cell1.setNeighbor(CellImpl.LEFT, cell2);
 		assertThat(cell1.getNeighbor(CellImpl.LEFT), is(sameInstance((Cell)cell2)));
 		assertThat(cell2.getNeighbor(CellImpl.RIGHT), is(sameInstance((Cell)cell1)));
 		
-		// ¶ã
+		// å·¦ä¸Š
 		cell1 = new CellImpl();
 		cell2 = new CellImpl();		
 		cell1.setNeighbor(CellImpl.UPPER_LEFT, cell2);
@@ -93,10 +93,10 @@ public class CellTest {
 	}
 	
 	/**
-	 * €‚ñ‚Å‚¢‚éƒZƒ‹‚É—×Ú‚·‚é¶‚«‚½ƒZƒ‹‚ª‚¿‚å‚¤‚Ç3‚Â‚ ‚ê‚ÎAŸ‚Ì¢‘ã‚ª’a¶‚·‚éB
+	 * æ­»ã‚“ã§ã„ã‚‹ã‚»ãƒ«ã«éš£æ¥ã™ã‚‹ç”ŸããŸã‚»ãƒ«ãŒã¡ã‚‡ã†ã©3ã¤ã‚ã‚Œã°ã€æ¬¡ã®ä¸–ä»£ãŒèª•ç”Ÿã™ã‚‹ã€‚
 	 */
 	@Test
-	public void ’a¶() {
+	public void èª•ç”Ÿ() {
 		CellImpl cell00 = new CellImpl();
 		CellImpl cell01 = new CellImpl();
 		CellImpl cell02 = new CellImpl();
@@ -116,10 +116,10 @@ public class CellTest {
 	}
 	
 	/**
-	 * ¶‚«‚Ä‚¢‚éƒZƒ‹‚É—×Ú‚·‚é¶‚«‚½ƒZƒ‹‚ª2‚Â‚©3‚Â‚È‚ç‚ÎAŸ‚Ì¢‘ã‚Å‚à¶‘¶‚·‚éB
+	 * ç”Ÿãã¦ã„ã‚‹ã‚»ãƒ«ã«éš£æ¥ã™ã‚‹ç”ŸããŸã‚»ãƒ«ãŒ2ã¤ã‹3ã¤ãªã‚‰ã°ã€æ¬¡ã®ä¸–ä»£ã§ã‚‚ç”Ÿå­˜ã™ã‚‹ã€‚
 	 */
 	@Test
-	public void ¶‘¶‚ÌƒeƒXƒg_—×Ú2‚Â() {
+	public void ç”Ÿå­˜ã®ãƒ†ã‚¹ãƒˆ_éš£æ¥2ã¤() {
 		CellImpl cell00 = new CellImpl();
 		CellImpl cell01 = new CellImpl();
 		CellImpl cell11 = new CellImpl();
@@ -136,10 +136,10 @@ public class CellTest {
 	}
 	
 	/**
-	 * ¶‚«‚Ä‚¢‚éƒZƒ‹‚É—×Ú‚·‚é¶‚«‚½ƒZƒ‹‚ª2‚Â‚©3‚Â‚È‚ç‚ÎAŸ‚Ì¢‘ã‚Å‚à¶‘¶‚·‚éB
+	 * ç”Ÿãã¦ã„ã‚‹ã‚»ãƒ«ã«éš£æ¥ã™ã‚‹ç”ŸããŸã‚»ãƒ«ãŒ2ã¤ã‹3ã¤ãªã‚‰ã°ã€æ¬¡ã®ä¸–ä»£ã§ã‚‚ç”Ÿå­˜ã™ã‚‹ã€‚
 	 */
 	@Test
-	public void ¶‘¶‚ÌƒeƒXƒg_—×Ú3‚Â() {
+	public void ç”Ÿå­˜ã®ãƒ†ã‚¹ãƒˆ_éš£æ¥3ã¤() {
 		CellImpl cell00 = new CellImpl();
 		CellImpl cell01 = new CellImpl();
 		CellImpl cell02 = new CellImpl();
@@ -159,10 +159,10 @@ public class CellTest {
 	}
 	
 	/**
-	 * ¶‚«‚Ä‚¢‚éƒZƒ‹‚É—×Ú‚·‚é¶‚«‚½ƒZƒ‹‚ª1‚ÂˆÈ‰º‚È‚ç‚ÎA‰ß‘a‚É‚æ‚è€–Å‚·‚éB
+	 * ç”Ÿãã¦ã„ã‚‹ã‚»ãƒ«ã«éš£æ¥ã™ã‚‹ç”ŸããŸã‚»ãƒ«ãŒ1ã¤ä»¥ä¸‹ãªã‚‰ã°ã€éç–ã«ã‚ˆã‚Šæ­»æ»…ã™ã‚‹ã€‚
 	 */
 	@Test
-	public void ‰ß‘a‚ÌƒeƒXƒg() {
+	public void éç–ã®ãƒ†ã‚¹ãƒˆ() {
 		CellImpl cell00 = new CellImpl();
 		CellImpl cell11 = new CellImpl();
 		
@@ -176,10 +176,10 @@ public class CellTest {
 	}
 	
 	/**
-	 * ¶‚«‚Ä‚¢‚éƒZƒ‹‚É—×Ú‚·‚é¶‚«‚½ƒZƒ‹‚ª4‚ÂˆÈã‚È‚ç‚ÎA‰ß–§‚É‚æ‚è€–Å‚·‚éB
+	 * ç”Ÿãã¦ã„ã‚‹ã‚»ãƒ«ã«éš£æ¥ã™ã‚‹ç”ŸããŸã‚»ãƒ«ãŒ4ã¤ä»¥ä¸Šãªã‚‰ã°ã€éå¯†ã«ã‚ˆã‚Šæ­»æ»…ã™ã‚‹ã€‚
 	 */
 	@Test
-	public void ‰ß–§‚ÌƒeƒXƒg() {
+	public void éå¯†ã®ãƒ†ã‚¹ãƒˆ() {
 		CellImpl cell00 = new CellImpl();
 		CellImpl cell01 = new CellImpl();
 		CellImpl cell02 = new CellImpl();
@@ -202,10 +202,10 @@ public class CellTest {
 	}
 	
 	/**
-	 * Ÿ‚Ì¢‘ã‚Ìó‘Ô‚ª”½‰f‚³‚ê‚é‚©ƒeƒXƒg
+	 * æ¬¡ã®ä¸–ä»£ã®çŠ¶æ…‹ãŒåæ˜ ã•ã‚Œã‚‹ã‹ãƒ†ã‚¹ãƒˆ
 	 */
 	@Test
-	public void updateState‚ÌƒeƒXƒg() {
+	public void updateStateã®ãƒ†ã‚¹ãƒˆ() {
 		CellImpl cell = new CellImpl();
 		
 		assertThat(cell.getState(), is(not(State.ALIVE)));
