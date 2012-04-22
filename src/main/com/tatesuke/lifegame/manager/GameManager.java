@@ -14,7 +14,7 @@ public class GameManager {
 	private CellImpl[][] cell;
 	private int generationNumber;
 	private boolean isRunning;
-	
+
 	public GameManager() {
 		reset(10, 10);
 	}
@@ -22,7 +22,7 @@ public class GameManager {
 	public void setObserver(GameObserver observer) {
 		this.observer = observer;
 	}
-	
+
 	public void start() {
 		if (!isRunning()) {
 			isRunning = true;
@@ -32,16 +32,17 @@ public class GameManager {
 
 	public void stop() {
 		isRunning = false;
+		notifyObserver();
 	}
-	
+
 	public boolean isRunning() {
 		return isRunning;
 	}
-	
+
 	public int getGenerationNumber() {
 		return generationNumber;
 	}
-	
+
 	private Runnable getGameThread() {
 		return new Runnable() {
 			@Override
@@ -74,7 +75,7 @@ public class GameManager {
 			observer.onGenerationChanged();
 		}
 	}
-	
+
 	public void toggleCell(int row, int column) {
 		State state = cell[row][column].getState();
 		switch (state) {
@@ -99,16 +100,16 @@ public class GameManager {
 	public int getRowSize() {
 		return rowSize;
 	}
-	
+
 	public int getColumnSize() {
 		return columnSize;
 	}
-	
+
 	public void reset(int rowSize, int columnSize) {
 		if ((rowSize <= 0) || (columnSize <= 0)) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		stop();
 		generationNumber = 0;
 		this.rowSize = rowSize;
@@ -127,5 +128,5 @@ public class GameManager {
 		}
 		this.interval = interval;
 	}
-	
+
 }

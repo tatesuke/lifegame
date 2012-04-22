@@ -61,13 +61,13 @@ public class ControlPanel extends JPanel {
 		rowSpinner = new JSpinner(new SpinnerNumberModel(manager.getRowSize(), 1, null, 1));
 		rowSpinner.setSize(100, rowSpinner.getHeight());
 		secondPanel.add(rowSpinner);
-		secondPanel.add(new JLabel("s"));
+		secondPanel.add(new JLabel("è¡Œ"));
 		
 		columnSipinner = new JSpinner(new SpinnerNumberModel(manager.getColumnSize(), 1, null, 1));
 		secondPanel.add(columnSipinner);
-		secondPanel.add(new JLabel("—ñ"));
+		secondPanel.add(new JLabel("åˆ—"));
 		
-		JButton resetButton = new JButton("ƒŠƒZƒbƒg&ƒTƒCƒY•ÏX");
+		JButton resetButton = new JButton("ãƒªã‚»ãƒƒãƒˆ&ã‚µã‚¤ã‚ºå¤‰æ›´");
 		resetButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -94,12 +94,12 @@ public class ControlPanel extends JPanel {
 	}
 	
 	public void update() {
-		generateLabel.setText(manager.getGenerationNumber() + "¢‘ã");
+		generateLabel.setText(manager.getGenerationNumber() + "ä¸–ä»£");
 		
 		if (manager.isRunning()) {
-			startStopButton.setText("ƒXƒgƒbƒv");
+			startStopButton.setText("ã‚¹ãƒˆãƒƒãƒ—");
 		} else {
-			startStopButton.setText("ƒXƒ^[ƒg");
+			startStopButton.setText("ã‚¹ã‚¿ãƒ¼ãƒˆ");
 		}
 	}
 	
