@@ -15,6 +15,8 @@ import com.tatesuke.lifegame.manager.GameManager;
 public class CellPanel extends JPanel implements MouseListener {
 
 	private static final long serialVersionUID = 1L;
+	private static final int PREFERRED_WIDTH = 400;
+	private static final int PREFERRED_HEIGHT = 400;
 	
 	private final GameManager manager;
 	private Cell[][] cell;
@@ -26,7 +28,7 @@ public class CellPanel extends JPanel implements MouseListener {
 		
 		this.manager = manager;
 		
-		setPreferredSize(new Dimension(400, 400));
+		setPreferredSize(new Dimension(PREFERRED_WIDTH, PREFERRED_HEIGHT));
 		addMouseListener(this);
 	}
 
@@ -82,22 +84,22 @@ public class CellPanel extends JPanel implements MouseListener {
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-		/* âΩÇ‡ÇµÇ»Ç¢ */
+		/* ‰Ωï„ÇÇ„Åó„Å™„ÅÑ */
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		/* âΩÇ‡ÇµÇ»Ç¢ */
+		/* ‰Ωï„ÇÇ„Åó„Å™„ÅÑ */
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-		/* âΩÇ‡ÇµÇ»Ç¢ */
+		/* ‰Ωï„ÇÇ„Åó„Å™„ÅÑ */
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		/* âΩÇ‡ÇµÇ»Ç¢ */
+		/* ‰Ωï„ÇÇ„Åó„Å™„ÅÑ */
 	}
 
 }
