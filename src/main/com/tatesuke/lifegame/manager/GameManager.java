@@ -48,10 +48,18 @@ public class GameManager {
 			@Override
 			public void run() {
 				while (isRunning) {
+					int aliveCount = 0;
 					for (int row = 0; row < cell.length; row++) {
 						for (int column = 0; column < cell[row].length; column++) {
+							if (cell[row][column].getState() == State.ALIVE) {
+								aliveCount++;
+							}
 							cell[row][column].evalNextState();
 						}
+					}
+					if (aliveCount == 0) {
+						stop();
+						break;
 					}
 					for (int row = 0; row < cell.length; row++) {
 						for (int column = 0; column < cell[row].length; column++) {
