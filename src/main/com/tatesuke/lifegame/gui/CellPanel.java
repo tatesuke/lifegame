@@ -17,6 +17,7 @@ public class CellPanel extends JPanel implements MouseListener {
 	private static final long serialVersionUID = 1L;
 	private static final int PREFERRED_WIDTH = 400;
 	private static final int PREFERRED_HEIGHT = 400;
+	private static final int GRID_MARGIN = 10;
 	
 	private final GameManager manager;
 	private Cell[][] cell;
@@ -35,10 +36,11 @@ public class CellPanel extends JPanel implements MouseListener {
 	@Override
 	public void paintComponent(Graphics g) {
 		cell = manager.getCell();
-
-		double cellSize = Math.min(getHeight() / cell.length, getWidth() / cell[0].length);
-		double offsetX = (getWidth() - (cellSize * cell[0].length)) / 2.0;
-		double offsetY = (getHeight() - (cellSize * cell.length)) / 2.0;
+		int gridWith = getWidth() - (GRID_MARGIN * 2);
+		int gridHeight = getHeight() - (GRID_MARGIN * 2);
+		double cellSize = Math.min(gridHeight / cell.length, gridWith / cell[0].length);
+		double offsetX = ((gridWith - (cellSize * cell[0].length)) / 2.0) + GRID_MARGIN;
+		double offsetY = ((gridHeight - (cellSize * cell.length)) / 2.0) + GRID_MARGIN;
 		
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, getWidth(), getHeight());
