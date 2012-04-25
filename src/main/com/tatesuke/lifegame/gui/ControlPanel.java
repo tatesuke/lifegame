@@ -1,5 +1,6 @@
 package com.tatesuke.lifegame.gui;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -59,11 +60,12 @@ public class ControlPanel extends JPanel {
 		
 		JPanel secondPanel = new JPanel();
 		rowSpinner = new JSpinner(new SpinnerNumberModel(manager.getRowSize(), 1, null, 1));
-		rowSpinner.setSize(100, rowSpinner.getHeight());
+		rowSpinner.setPreferredSize(new Dimension(55, rowSpinner.getPreferredSize().height));
 		secondPanel.add(rowSpinner);
 		secondPanel.add(new JLabel("行"));
 		
 		columnSipinner = new JSpinner(new SpinnerNumberModel(manager.getColumnSize(), 1, null, 1));
+		columnSipinner.setPreferredSize(new Dimension(55, columnSipinner.getPreferredSize().height));
 		secondPanel.add(columnSipinner);
 		secondPanel.add(new JLabel("列"));
 		
