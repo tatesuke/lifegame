@@ -80,6 +80,7 @@ public class ControlPanel extends JPanel {
 		add(secondPanel);
 		
 		JPanel thirdPanel = new JPanel();
+		thirdPanel.setLayout(new BoxLayout(thirdPanel, BoxLayout.X_AXIS));
 		intervalSlider = new JSlider(50, 2000, (int)manager.getInterval());
 		intervalSlider.addChangeListener(new ChangeListener() {
 			@Override
