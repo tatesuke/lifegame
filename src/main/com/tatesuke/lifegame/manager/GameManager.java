@@ -48,23 +48,10 @@ public class GameManager {
 			@Override
 			public void run() {
 				while (isRunning) {
-					int aliveCount = 0;
-					for (int row = 0; row < cell.length; row++) {
-						for (int column = 0; column < cell[row].length; column++) {
-							if (cell[row][column].getState() == State.ALIVE) {
-								aliveCount++;
-							}
-							cell[row][column].evalNextState();
-						}
-					}
+					int aliveCount = updateCells();
 					if (aliveCount == 0) {
 						stop();
 						break;
-					}
-					for (int row = 0; row < cell.length; row++) {
-						for (int column = 0; column < cell[row].length; column++) {
-							cell[row][column].updateState();
-						}
 					}
 					generationNumber++;
 					notifyObserver();
@@ -77,27 +64,49 @@ public class GameManager {
 			}
 		};
 	}
+	
+	private int updateCells() {
+		int aliveCount = 0;
+		synchronized (cell) {
+			for (int row = 0; row < cell.length; row++) {
+				for (int column = 0; column < cell[row].length; column++) {
+					if (cell[row][column].getState() == State.ALIVE) {
+						aliveCount++;
+					}
+					cell[row][column].evalNextState();
+				}
+			}
+			for (int row = 0; row < cell.length; row++) {
+				for (int column = 0; column < cell[row].length; column++) {
+					cell[row][column].updateState();
+				}
+			}
+		}
+		return aliveCount;
+	}
 
-	public void notifyObserver() {
+	private void notifyObserver() {
 		if (observer != null) {
 			observer.onGenerationChanged();
 		}
 	}
 
 	public void toggleCell(int row, int column) {
-		State state = cell[row][column].getState();
-		switch (state) {
-		case ALIVE:
-			cell[row][column].setState(State.DEAD);
-			break;
-		case DEAD:
-			cell[row][column].setState(State.ALIVE);
-			break;
-		default:
-			throw new RuntimeException();
-		}
-		if (observer != null) {
-			observer.onGenerationChanged();
+		synchronized (cell) {
+			State state = cell[row][column].getState();
+			switch (state) {
+			case ALIVE:
+				cell[row][column].setState(State.DEAD);
+				break;
+			case DEAD:
+				cell[row][column].setState(State.ALIVE);
+				break;
+			default:
+				throw new RuntimeException();
+			}
+			if (observer != null) {
+				observer.onGenerationChanged();
+			}
 		}
 	}
 
